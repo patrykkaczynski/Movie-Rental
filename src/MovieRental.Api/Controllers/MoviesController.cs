@@ -1,18 +1,19 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MovieRental.Api.Controllers.Base;
 using MovieRental.Application.Features.Movies.Commands.CreateMovie;
 using MovieRental.Application.Features.Movies.Commands.DeleteMovie;
+using MovieRental.Application.Features.Movies.Commands.UpdateMovie;
 using MovieRental.Application.Features.Movies.Queries.GetMovieDetail;
 using MovieRental.Application.Features.Movies.Queries.GetMovieList;
 
 namespace MovieRental.Api.Controllers;
 
-[Route("api/movie")]
-[ApiController]
-public class MovieController : ApiControllerBase
+[Authorize]
+public class MoviesController : ApiControllerBase
 {
-    public MovieController(IMediator mediator) : base(mediator) { }
+    public MoviesController(IMediator mediator) : base(mediator) { }
 
 
     [HttpGet]
@@ -38,12 +39,18 @@ public class MovieController : ApiControllerBase
         return Created($"api/movie/{id}", null);
     }
 
+    [HttpPut]
+    public async Task<ActionResult> UpdateMovieAsync([FromBody] UpdateMovieCommand command)
+    {
+        await _mediator.Send(command);
+        return Ok();
+    }
 
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteMovieAsync([FromRoute] Guid id)
     {
         await _mediator.Send(new DeleteMovieCommand(id));
-        return Ok(id);
+        return NoContent();
     }
 
 }

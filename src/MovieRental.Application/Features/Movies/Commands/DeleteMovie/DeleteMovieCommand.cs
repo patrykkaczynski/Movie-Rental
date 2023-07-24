@@ -19,7 +19,7 @@ internal sealed class DeleteMovieCommandHandler : IRequestHandler<DeleteMovieCom
         var movie = await _movieRepository.GetByIdAsync(request.Id);
 
         if (movie is null)
-            throw new NotFoundException($"Movie does not exist with {request.Id}");
+            throw new NotFoundException($"Movie does not exist with {request.Id} id");
 
         await _movieRepository.DeleteAsync(movie);
 

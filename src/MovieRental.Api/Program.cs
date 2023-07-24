@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using MovieRental.Api.Extensions;
 using MovieRental.Api.Middlewares;
 using MovieRental.Application.Extensions;
@@ -12,18 +13,19 @@ builder.Services
     .AddInfrastructure(builder.Configuration)
     .AddPresentation();
 
-
 builder.Services.AddControllers();
-
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 app.UseMiddleware<ExceptionMiddleware>();
 
+app.UseAuthentication();
+
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

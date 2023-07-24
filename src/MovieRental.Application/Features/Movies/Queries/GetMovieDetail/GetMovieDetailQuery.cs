@@ -22,7 +22,7 @@ namespace MovieRental.Application.Features.Movies.Queries.GetMovieDetail
             var movie = await _movieRepository.GetByIdAsync(request.Id);
 
             return movie is null
-                ? throw new NotFoundException($"Movie does not exist with {request.Id}")
+                ? throw new NotFoundException($"Movie does not exist with {request.Id} id")
                 : _mapper.Map<MovieDetailQueryDto>(movie);
         }
     }

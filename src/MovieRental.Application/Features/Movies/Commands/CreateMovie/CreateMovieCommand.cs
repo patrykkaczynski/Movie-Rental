@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using FluentValidation;
 using MediatR;
 using MovieRental.Domain.Entities;
 using MovieRental.Domain.Interfaces;
@@ -27,9 +26,6 @@ internal sealed class CreateBookCommandHandler : IRequestHandler<CreateMovieComm
     }
     public async Task<Guid> Handle(CreateMovieCommand request, CancellationToken cancellationToken)
     {
-        var validator = new CreateMovieCommandValidator();
-        await validator.ValidateAndThrowAsync(request, cancellationToken);
-
         var movie = _mapper.Map<Movie>(request);
 
         return await _movieRepository.CreateAsync(movie);

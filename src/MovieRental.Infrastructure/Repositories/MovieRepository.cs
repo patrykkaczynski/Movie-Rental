@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MovieRental.Domain.Entities;
 using MovieRental.Domain.Interfaces;
 using MovieRental.Infrastructure.Persistence;
@@ -21,7 +22,9 @@ public class MovieRepository : IMovieRepository
 
     public async Task<Movie?> GetByIdAsync(Guid id)
     {
-        return await _dbContext.Movies.FirstOrDefaultAsync(m => m.Id == id);
+        return await _dbContext.Movies
+            .Include(m => m.Reviews)
+            .FirstOrDefaultAsync(m => m.Id == id);
     }
 
     public async Task<Guid> CreateAsync(Movie movie)
@@ -32,9 +35,17 @@ public class MovieRepository : IMovieRepository
         return movie.Id;
     }
 
-    public Task UpdateAsync(Movie movie)
+    public async Task UpdateAsync(Movie existingMovie, Movie newMovie)
     {
-        throw new NotImplementedException();
+        existingMovie.Title = newMovie.Title;
+        existingMovie.Description = newMovie.Description;
+        existingMovie.Genre = newMovie.Genre;
+        existingMovie.RunTimeMin = newMovie.RunTimeMin;
+        existingMovie.RegionOfOrigin = newMovie.RegionOfOrigin;
+        existingMovie.ReleaseDate = newMovie.ReleaseDate;
+
+        await _dbContext.SaveChangesAsync();
+
     }
 
     public async Task DeleteAsync(Movie movie)

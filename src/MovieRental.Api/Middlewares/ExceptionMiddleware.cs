@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using MovieRental.Domain.Entities;
+using MovieRental.Domain.Exceptions;
 using System.Net;
 using System.Text.Json;
 
@@ -27,7 +28,19 @@ namespace MovieRental.Api.Middlewares
             ValidationProblemDetails problemDetails;
 
 
-            if (exceptionType == typeof(ValidationException))
+            if (exceptionType == typeof(NotFoundException))
+            {
+                problemDetails = new ValidationProblemDetails(new Dictionary<string, string[]> { { "Error", new[] { exception.Message } } })
+                {
+                    Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
+                    Title = "Not Found",
+                    Status = (int)HttpStatusCode.NotFound,
+                    Instance = context.Request.Path
+                };
+
+                context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+            }
+            else if(exceptionType == typeof(BadRequestException))
             {
                 problemDetails = new ValidationProblemDetails(new Dictionary<string, string[]> { { "Error", new[] { exception.Message } } })
                 {
@@ -36,9 +49,8 @@ namespace MovieRental.Api.Middlewares
                     Status = (int)HttpStatusCode.BadRequest,
                     Instance = context.Request.Path
                 };
+
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-
-
             }
             else
             {

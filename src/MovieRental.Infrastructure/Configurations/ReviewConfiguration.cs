@@ -9,16 +9,13 @@ internal sealed class ReviewConfiguration : IEntityTypeConfiguration<Review>
     public void Configure(EntityTypeBuilder<Review> builder)
     {
 
-        //many to one relation (Reviews - Book)
+        //many to one relation (Reviews - Movie)
         builder
             .HasOne(r => r.Movie)
-            .WithMany(b => b.Reviews)
+            .WithMany(m => m.Reviews)
             .HasForeignKey(r => r.MovieId);
 
-        //one to many relation (Review - Responses)
-        builder
-            .HasMany(r => r.Responses)
-            .WithOne(rp => rp.Review)
-            .HasForeignKey(rp => rp.ReviewId);
+        builder.HasKey(r => r.Id);
+
     }
 } 

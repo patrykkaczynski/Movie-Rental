@@ -12,5 +12,5 @@ public class Movie
     public DateOnly? ReleaseDate { get; set; }
     public bool IsRented { get; set; }
 
-    public List<Review> Reviews { get; set; } = new();
+    public List<Review>? Reviews { get; set; }
 }
