@@ -7,7 +7,6 @@ using MovieRental.Application.Features.Accounts.Commands.RegisterUser;
 namespace MovieRental.Api.Controllers;
 
 [Route("api/account")]
-[ApiController]
 public class AccountController : ApiControllerBase
 {
     public AccountController(IMediator mediator) : base(mediator) { }

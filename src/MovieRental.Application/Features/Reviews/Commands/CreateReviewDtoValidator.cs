@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace MovieRental.Application.Features.Reviews.Commands;
 
-internal sealed class ReviewDtoValidator : AbstractValidator<ReviewDto>
+internal sealed class CreateReviewDtoValidator : AbstractValidator<CreateReviewDto>
 {
-    public ReviewDtoValidator()
+    public CreateReviewDtoValidator()
     {
         RuleFor(r => r.Description)
            .MaximumLength(200)

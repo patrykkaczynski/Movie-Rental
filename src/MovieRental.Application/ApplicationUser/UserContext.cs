@@ -18,10 +18,7 @@ public class UserContext : IUserContext
     }
     public CurrentUser GetCurrentUser()
     {
-        var user = _httpContextAccessor?.HttpContext?.User;
-
-        if (user is null)
-            throw new NotFoundException("Context user is not found");
+        var user = (_httpContextAccessor?.HttpContext?.User) ?? throw new NotFoundException("Context user is not found");
 
         var fullname = user.FindFirst(c => c.Type == ClaimTypes.Name)!.Value;
 

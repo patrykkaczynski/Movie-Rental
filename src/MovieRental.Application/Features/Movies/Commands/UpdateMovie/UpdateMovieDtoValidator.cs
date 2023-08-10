@@ -2,12 +2,10 @@
 
 namespace MovieRental.Application.Features.Movies.Commands.UpdateMovie;
 
-internal sealed class UpdateMovieCommandValidator : AbstractValidator<UpdateMovieCommand>
+internal sealed class UpdateMovieDtoValidator : AbstractValidator<UpdateMovieDto>
 {
-    public UpdateMovieCommandValidator()
+    public UpdateMovieDtoValidator()
     {
-        RuleFor(m => m.Id)
-            .NotEmpty();
 
         RuleFor(m => m.Title)
             .MaximumLength(50)

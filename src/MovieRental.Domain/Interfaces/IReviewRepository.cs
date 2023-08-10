@@ -1,5 +1,4 @@
-﻿
-using MovieRental.Domain.Entities;
+﻿using MovieRental.Domain.Entities;
 
 namespace MovieRental.Domain.Interfaces;
 

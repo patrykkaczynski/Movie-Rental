@@ -25,10 +25,10 @@ internal sealed class RegisterUserCommandValidator : AbstractValidator<RegisterU
         RuleFor(r => r.Password)
             .NotEmpty()
             .MinimumLength(6)
-            .Must(PasswordHelper.HasNumber).WithMessage("Password must contain at least one digit")
-            .Must(PasswordHelper.HasCapitalLetter).WithMessage("Password must contain at least one capital letter")
-            .Must(PasswordHelper.HasSmallLetter).WithMessage("Password must contain at least one small letter")
-            .Must(PasswordHelper.HasSpecialCharacters).WithMessage("Password must contain at least one special character");
+            .Must(PasswordHelper.HasNumber).WithMessage("'Password' must contain at least one digit")
+            .Must(PasswordHelper.HasCapitalLetter).WithMessage("'Password' must contain at least one capital letter")
+            .Must(PasswordHelper.HasSmallLetter).WithMessage("'Password' must contain at least one small letter")
+            .Must(PasswordHelper.HasSpecialCharacters).WithMessage("'Password' must contain at least one special character");
 
         RuleFor(r => r.ConfirmPassword)
             .Equal(e => e.Password);

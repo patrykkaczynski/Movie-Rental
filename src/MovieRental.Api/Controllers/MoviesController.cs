@@ -7,10 +7,12 @@ using MovieRental.Application.Features.Movies.Commands.DeleteMovie;
 using MovieRental.Application.Features.Movies.Commands.UpdateMovie;
 using MovieRental.Application.Features.Movies.Queries.GetMovieDetail;
 using MovieRental.Application.Features.Movies.Queries.GetMovieList;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace MovieRental.Api.Controllers;
 
 [Authorize]
+[Route("api/movies")]
 public class MoviesController : ApiControllerBase
 {
     public MoviesController(IMediator mediator) : base(mediator) { }
@@ -36,13 +38,13 @@ public class MoviesController : ApiControllerBase
     public async Task<ActionResult<int>> CreateMovieAsync([FromBody] CreateMovieCommand command)
     {
         var id = await _mediator.Send(command);
-        return Created($"api/movie/{id}", null);
+        return Created($"api/movies/{id}", null);
     }
 
-    [HttpPut]
-    public async Task<ActionResult> UpdateMovieAsync([FromBody] UpdateMovieCommand command)
+    [HttpPut("{id}")]
+    public async Task<ActionResult> UpdateMovieAsync([FromRoute] Guid id, [FromBody] UpdateMovieDto movieDto)
     {
-        await _mediator.Send(command);
+        await _mediator.Send(new UpdateMovieCommand(id, movieDto.Title, movieDto.Description, movieDto.Genre, movieDto.RunTimeMin, movieDto.RegionOfOrigin, movieDto.ReleaseDate));
         return Ok();
     }
 

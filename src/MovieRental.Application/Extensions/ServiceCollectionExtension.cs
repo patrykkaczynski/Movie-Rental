@@ -30,8 +30,8 @@ public static class ServiceCollectionExtension
         //FluentValidation
         services.AddScoped<IValidator<RegisterUserCommand>, RegisterUserCommandValidator>();
         services.AddScoped<IValidator<CreateMovieCommand>, CreateMovieCommandValidator>();
-        services.AddScoped<IValidator<UpdateMovieCommand>, UpdateMovieCommandValidator>();
-        services.AddScoped<IValidator<ReviewDto>, ReviewDtoValidator>();
+        services.AddScoped<IValidator<UpdateMovieDto>, UpdateMovieDtoValidator>();
+        services.AddScoped<IValidator<CreateReviewDto>, CreateReviewDtoValidator>();
         services.AddValidatorsFromAssemblyContaining<CreateMovieCommandValidator>()
             .AddFluentValidationAutoValidation();
         ValidatorOptions.Global.LanguageManager.Enabled = false;
