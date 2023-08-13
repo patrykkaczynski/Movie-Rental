@@ -21,7 +21,8 @@ public class UserContext : IUserContext
         var user = (_httpContextAccessor?.HttpContext?.User) ?? throw new NotFoundException("Context user is not found");
 
         var fullname = user.FindFirst(c => c.Type == ClaimTypes.Name)!.Value;
+        var roles = user.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value);
 
-        return new CurrentUser(fullname);
+        return new CurrentUser(fullname, roles);
     }
 }

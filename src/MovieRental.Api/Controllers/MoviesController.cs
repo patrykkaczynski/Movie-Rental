@@ -7,7 +7,6 @@ using MovieRental.Application.Features.Movies.Commands.DeleteMovie;
 using MovieRental.Application.Features.Movies.Commands.UpdateMovie;
 using MovieRental.Application.Features.Movies.Queries.GetMovieDetail;
 using MovieRental.Application.Features.Movies.Queries.GetMovieList;
-using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace MovieRental.Api.Controllers;
 

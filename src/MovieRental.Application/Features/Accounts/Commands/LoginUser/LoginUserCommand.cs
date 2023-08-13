@@ -24,12 +24,12 @@ internal sealed class LoginUserCommandHandler : IRequestHandler<LoginUserCommand
     }
     public async Task<string> Handle(LoginUserCommand request, CancellationToken cancellationToken)
     {
-        var user = await _accountRepository.GetUserAsync(request.Email) ?? throw new BadRequestException("Invalid username or password");
+        var user = await _accountRepository.GetUserAsync(request.Email) ?? throw new InvalidCredentialsException("Invalid username or password");
 
         var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, request.Password);
 
         if(result == PasswordVerificationResult.Failed)
-            throw new BadRequestException("Invalid username or password");
+            throw new InvalidCredentialsException("Invalid username or password");
 
         return _jwtProvider.GenerateJwt(user);
     }

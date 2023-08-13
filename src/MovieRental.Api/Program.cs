@@ -1,6 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
+using Hellang.Middleware.ProblemDetails;
 using MovieRental.Api.Extensions;
-using MovieRental.Api.Middlewares;
 using MovieRental.Application.Extensions;
 using MovieRental.Infrastructure.Extensions;
 
@@ -18,8 +17,7 @@ builder.Services.AddControllers();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-
-app.UseMiddleware<ExceptionMiddleware>();
+app.UseProblemDetails();
 
 app.UseAuthentication();
 

@@ -28,6 +28,11 @@ internal sealed class CreateReviewHandler : IRequestHandler<CreateReviewCommand,
     }
     public async Task<Guid> Handle(CreateReviewCommand request, CancellationToken cancellationToken)
     {
+        var currentUser = _userContext.GetCurrentUser();
+        if (currentUser == null || !currentUser.IsInRole("Client"))
+        {
+            throw new NotFoundException($"You do not have access");
+        }
         var movie = await _movieRepository.GetByIdAsync(request.MovieId);
 
         if(movie is null)
@@ -35,7 +40,7 @@ internal sealed class CreateReviewHandler : IRequestHandler<CreateReviewCommand,
 
         var review = _mapper.Map<Review>(request);
 
-        review.CreatedBy = _userContext.GetCurrentUser().FullName;
+        review.CreatedBy = currentUser.FullName;
         review.CreationDate = DateTime.UtcNow;
         review.MovieId = request.MovieId;
 
