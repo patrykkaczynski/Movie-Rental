@@ -1,26 +1,27 @@
 ﻿using AutoMapper;
 using MediatR;
+using MovieRental.Domain.Exceptions;
 using MovieRental.Domain.Interfaces;
 
 namespace MovieRental.Application.Features.Reviews.Queries;
 
-public record GetReviewsQuery(Guid MovieId) : IRequest<IEnumerable<GetReviewListQueryDto>>;
+public record GetReviewsQuery(Guid MovieId) : IRequest<IEnumerable<ReviewListQueryDto>>;
 
-internal sealed class GetReviewsQueryHandler : IRequestHandler<GetReviewsQuery, IEnumerable<GetReviewListQueryDto>>
+internal sealed class GetReviewsQueryHandler : IRequestHandler<GetReviewsQuery, IEnumerable<ReviewListQueryDto>>
 {
-    private readonly IReviewRepository _reviewRepository;
+    private readonly IMovieRepository _movieRepository;
     private readonly IMapper _mapper;
 
-    public GetReviewsQueryHandler(IReviewRepository reviewRepository, IMapper mapper)
+    public GetReviewsQueryHandler(IMovieRepository movieRepository, IMapper mapper)
     {
-        _reviewRepository = reviewRepository;
+        _movieRepository = movieRepository;
         _mapper = mapper;
     }
-    public async Task<IEnumerable<GetReviewListQueryDto>> Handle(GetReviewsQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<ReviewListQueryDto>> Handle(GetReviewsQuery request, CancellationToken cancellationToken)
     {
-        var reviews = await _reviewRepository.GetAsync(request.MovieId);
+        var restaurant = await _movieRepository.GetByIdAsync(request.MovieId) ?? throw new NotFoundException($"Movie does not exist with {request.MovieId} id");
 
-        return _mapper.Map<IEnumerable<GetReviewListQueryDto>>(reviews);
+        return _mapper.Map<IEnumerable<ReviewListQueryDto>>(restaurant.Reviews);
     }
 }
 

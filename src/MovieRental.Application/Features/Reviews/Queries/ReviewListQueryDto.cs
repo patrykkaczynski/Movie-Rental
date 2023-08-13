@@ -1,8 +1,7 @@
 ﻿
-
 namespace MovieRental.Application.Features.Reviews.Queries;
 
-public class GetReviewListQueryDto
+public class ReviewListQueryDto
 {
     public Guid Id { get; private set; }
     public string? Description { get; set; }

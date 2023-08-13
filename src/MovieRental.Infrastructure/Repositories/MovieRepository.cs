@@ -29,7 +29,7 @@ public class MovieRepository : IMovieRepository
 
     public async Task<Guid> CreateAsync(Movie movie)
     {
-        await _dbContext.AddAsync(movie);
+        await _dbContext.Movies.AddAsync(movie);
         await _dbContext.SaveChangesAsync();
 
         return movie.Id;

@@ -26,7 +26,7 @@ public class MovieProfile : Profile
 
         CreateMap<CreateReviewCommand, Review>();
 
-        CreateMap<Review, GetReviewListQueryDto>();
+        CreateMap<Review,  ReviewListQueryDto>();
 
     }
 }

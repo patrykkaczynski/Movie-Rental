@@ -20,9 +20,4 @@ internal class ReviewRepository : IReviewRepository
 
         return review.Id;
     }
-
-    public async Task<IEnumerable<Review>> GetAsync(Guid id)
-    {
-        return await _dbContext.Reviews.Where(x => x.MovieId ==  id).ToListAsync();
-    }
 }

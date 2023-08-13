@@ -17,6 +17,7 @@ public class ReviewsController : ApiControllerBase
     public async Task<ActionResult> GetReviewsAsync([FromRoute] Guid movieId)
     {
         var reviews = await _mediator.Send(new GetReviewsQuery(movieId));
+
         return Ok(reviews);
     }
 
