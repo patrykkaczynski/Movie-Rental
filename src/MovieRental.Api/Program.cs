@@ -2,6 +2,7 @@ using Hellang.Middleware.ProblemDetails;
 using MovieRental.Api.Extensions;
 using MovieRental.Application.Extensions;
 using MovieRental.Infrastructure.Extensions;
+using Newtonsoft.Json.Converters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,12 @@ builder.Services
     .AddInfrastructure(builder.Configuration)
     .AddPresentation();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options =>
+    {
+        options.SerializerSettings.Converters.Add(new StringEnumConverter());
+    });
+
 
 var app = builder.Build();
 

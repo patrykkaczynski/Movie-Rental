@@ -12,7 +12,7 @@ public class AccountController : ApiControllerBase
     public AccountController(IMediator mediator) : base(mediator) { }
 
     [HttpPost("register")]
-    public async Task<ActionResult> RegisterUser([FromBody] RegisterUserCommand command)
+    public async Task<ActionResult> RegisterUser([FromBody] RegisterUserCommand command, [FromQuery] string role)
     {
         await _mediator.Send(command);
         return Ok();

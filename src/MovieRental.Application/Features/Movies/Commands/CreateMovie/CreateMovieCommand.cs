@@ -11,7 +11,8 @@ public record CreateMovieCommand(
     string Genre,
     int RunTimeMin,
     string RegionOfOrigin,
-    DateOnly ReleaseDate) : IRequest<Guid>;
+    DateOnly ReleaseDate
+      ) : IRequest<Guid>;
 
 
 internal sealed class CreateBookCommandHandler : IRequestHandler<CreateMovieCommand, Guid>
@@ -31,3 +32,4 @@ internal sealed class CreateBookCommandHandler : IRequestHandler<CreateMovieComm
         return await _movieRepository.CreateAsync(movie);
     }
 }
+

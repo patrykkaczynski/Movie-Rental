@@ -10,7 +10,8 @@ public class Movie
     public int RunTimeMin { get; set; }
     public string? RegionOfOrigin { get; set; }
     public DateOnly? ReleaseDate { get; set; }
-    public bool IsRented { get; set; }
 
+    //public Guid PhysicalMovieId { get; set; }
+    //public PhysicalMovie? PhysicalMovie { get; set; }
     public List<Review>? Reviews { get; set; }
 }

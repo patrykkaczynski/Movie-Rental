@@ -12,8 +12,8 @@ public record RegisterUserCommand(
     string ConfirmPassword,
     string FirstName,
     string LastName,
-    DateOnly DateOfBirth,
-    int RoleId = 1
+    DateOnly DateOfBirth
+    //string Role
     ) : IRequest;
 
 

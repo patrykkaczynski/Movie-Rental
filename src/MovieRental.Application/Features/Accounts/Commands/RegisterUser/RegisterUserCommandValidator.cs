@@ -37,9 +37,9 @@ internal sealed class RegisterUserCommandValidator : AbstractValidator<RegisterU
             .NotEmpty()
             .ExclusiveBetween(DateOnly.FromDateTime(DateTime.Now).AddYears(-125), DateOnly.FromDateTime(DateTime.Now));
 
-        RuleFor(r => r.RoleId)
-            .NotEmpty()
-            .InclusiveBetween(1, 3);
+        //RuleFor(r => r.RoleId)
+        //    .NotEmpty()
+        //    .InclusiveBetween(1, 3);
     }
 }
 
