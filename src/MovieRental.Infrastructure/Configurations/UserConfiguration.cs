@@ -15,17 +15,20 @@ namespace MovieRental.Infrastructure.Configurations
                 .IsRequired();
 
             builder.Property(u => u.LastName)
-               .IsRequired();
+                .IsRequired();
 
             builder.Property(u => u.DateOfBirth)
-               .IsRequired();
+                .IsRequired();
 
             builder.Property(u => u.PasswordHash)
-             .IsRequired();
+                .IsRequired();
 
+            builder.Property(u => u.Role)
+                .IsRequired()
+                .HasConversion<string>();
 
 
         }
 
-}
+    }
 }

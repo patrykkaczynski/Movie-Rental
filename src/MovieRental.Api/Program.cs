@@ -15,8 +15,10 @@ builder.Services
     .AddPresentation();
 
 builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+    .AddJsonOptions(opt =>
+    {
+        opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 
 
 var app = builder.Build();

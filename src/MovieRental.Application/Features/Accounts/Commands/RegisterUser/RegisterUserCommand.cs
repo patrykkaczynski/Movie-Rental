@@ -16,21 +16,8 @@ public record RegisterUserCommand(
     string FirstName,
     string LastName,
     DateOnly DateOfBirth,
-    [property: JsonConverter(typeof(JsonStringEnumConverter))] Role Role
+    Role Role
     ) : IRequest;
-
-//public class RegisterUserCommand : IRequest
-//{
-//    public string? Email { get; set; }
-//    public string? Password { get; set; }
-//    public string? ConfirmPassword { get; set; }
-//    public string? FirstName { get; set; }
-//    public string? LastName { get; set; }
-//    public DateOnly DateOfBirth { get; set; }
-
-//    [JsonConverter(typeof(JsonStringEnumConverter))]
-//    public Role Role { get; set; }
-//}
 
 internal sealed class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand>
 {
