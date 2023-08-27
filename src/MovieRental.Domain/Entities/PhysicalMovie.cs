@@ -1,11 +1,17 @@
 ﻿
+using MovieRental.Domain.Enums;
+
 namespace MovieRental.Domain.Entities;
 
-//public class PhysicalMovie
-//{
-//    Guid Id { get; set; }
-    
-//    List<Movie> Movies { get; set;}
-//}
-    
+public class PhysicalMovie
+{
+    public Guid Id { get; set; }
+    public Format Format { get; set; }
+    public int Quantity { get; set; } = 0;
+
+    public Guid MovieId { get; set; }
+    public Movie? Movie { get; set; }
+    public ICollection<Rental>? Rentals { get; set; }
+}
+
 

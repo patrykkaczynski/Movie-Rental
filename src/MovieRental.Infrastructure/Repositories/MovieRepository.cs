@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MovieRental.Domain.Entities;
 using MovieRental.Domain.Interfaces;
 using MovieRental.Infrastructure.Persistence;
-using System.Runtime.CompilerServices;
 
 namespace MovieRental.Infrastructure.Repositories;
 

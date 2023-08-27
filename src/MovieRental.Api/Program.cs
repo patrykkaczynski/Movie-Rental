@@ -3,6 +3,7 @@ using MovieRental.Api.Extensions;
 using MovieRental.Application.Extensions;
 using MovieRental.Infrastructure.Extensions;
 using Newtonsoft.Json.Converters;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,10 +15,8 @@ builder.Services
     .AddPresentation();
 
 builder.Services.AddControllers()
-    .AddNewtonsoftJson(options =>
-    {
-        options.SerializerSettings.Converters.Add(new StringEnumConverter());
-    });
+    .AddJsonOptions(options =>
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 
 var app = builder.Build();

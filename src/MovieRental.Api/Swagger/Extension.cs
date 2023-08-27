@@ -1,5 +1,4 @@
 ﻿using Microsoft.OpenApi.Models;
-using MovieRental.Api.Swagger.ParameterFilters;
 
 namespace MovieRental.Api.Swagger;
 
@@ -37,8 +36,6 @@ public static class Extension
 
                 }
             });
-
-            options.ParameterFilter<RolesParameterFilter>();
-        }).AddSwaggerGenNewtonsoftSupport();
+        });
     }
 }

@@ -11,7 +11,6 @@ public class Movie
     public string? RegionOfOrigin { get; set; }
     public DateOnly? ReleaseDate { get; set; }
 
-    //public Guid PhysicalMovieId { get; set; }
-    //public PhysicalMovie? PhysicalMovie { get; set; }
-    public List<Review>? Reviews { get; set; }
+    public ICollection<PhysicalMovie>? PhysicalMovies { get; set; }
+    public ICollection<Review>? Reviews { get; set; }
 }

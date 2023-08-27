@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MovieRental.Api.Controllers.Base;
 using MovieRental.Application.Features.Accounts.Commands.LoginUser;
 using MovieRental.Application.Features.Accounts.Commands.RegisterUser;
+using MovieRental.Domain.Enums;
 
 namespace MovieRental.Api.Controllers;
 
@@ -12,7 +13,7 @@ public class AccountController : ApiControllerBase
     public AccountController(IMediator mediator) : base(mediator) { }
 
     [HttpPost("register")]
-    public async Task<ActionResult> RegisterUser([FromBody] RegisterUserCommand command, [FromQuery] string role)
+    public async Task<ActionResult> RegisterUser([FromBody] RegisterUserCommand command)
     {
         await _mediator.Send(command);
         return Ok();

@@ -23,8 +23,7 @@ namespace MovieRental.Infrastructure.Configurations
             builder.Property(u => u.PasswordHash)
              .IsRequired();
 
-            builder.Property(u => u.RoleId)
-              .IsRequired();
+
 
         }
 

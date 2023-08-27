@@ -1,4 +1,6 @@
-﻿namespace MovieRental.Domain.Entities;
+﻿using MovieRental.Domain.Enums;
+
+namespace MovieRental.Domain.Entities;
 
 public class User
 {
@@ -8,7 +10,7 @@ public class User
     public string? LastName { get; set; }
     public DateOnly? DateOfBirth { get; set; }
     public string?  PasswordHash { get; set; }
+    public Role Role { get; set; }
 
-    public int RoleId { get; set; }
-    public Role? Role { get; set; }
+    public ICollection<Rental>? Rentals { get; set; }
 }
