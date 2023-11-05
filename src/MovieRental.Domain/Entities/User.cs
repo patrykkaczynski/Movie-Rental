@@ -4,13 +4,13 @@ namespace MovieRental.Domain.Entities;
 
 public class User
 {
-    public Guid Id { get; set; }
-    public string? Email  { get; set; }
-    public string? FirstName { get; set; }
-    public string? LastName { get; set; }
-    public DateOnly? DateOfBirth { get; set; }
-    public string?  PasswordHash { get; set; }
+    public Guid Id { get; private set; }
+    public required string Email { get; set; }
+    public required string FirstName { get; set; }
+    public required string LastName { get; set; }
+    public DateOnly DateOfBirth { get; set; }
+    public required string PasswordHash { get; set; }
     public Role Role { get; set; }
 
-    public ICollection<Rental>? Rentals { get; set; }
+    public ICollection<Rental> Rentals { get; set; } = new List<Rental>();
 }

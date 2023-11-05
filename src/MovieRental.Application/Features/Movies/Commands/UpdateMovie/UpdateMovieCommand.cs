@@ -26,11 +26,7 @@ internal sealed class UpdateMovieCommandHandler : IRequestHandler<UpdateMovieCom
     }
     public async Task Handle(UpdateMovieCommand request, CancellationToken cancellationToken)
     {
-
-        var existingMovie = await _movieRepository.GetByIdAsync(request.Id);
-
-        if (existingMovie is null)
-            throw new NotFoundException($"Movie does not exist with {request.Id} id");
+        var existingMovie = await _movieRepository.GetByIdAsync(request.Id) ?? throw new NotFoundException($"Movie does not exist with {request.Id} id");
 
         var newMovie = _mapper.Map<Movie>(request);
 

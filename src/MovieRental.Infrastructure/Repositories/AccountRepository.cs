@@ -29,7 +29,6 @@ internal class AccountRepository : IAccountRepository
     {
 
         return await _dbContext.Users
-            .Include(u => u.Role)
             .FirstOrDefaultAsync(u => u.Email == email);
     }
 }

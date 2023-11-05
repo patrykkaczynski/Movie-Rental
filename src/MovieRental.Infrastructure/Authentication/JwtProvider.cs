@@ -1,5 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using MovieRental.Domain.Entities;
+using MovieRental.Domain.Exceptions;
 using MovieRental.Domain.Interfaces;
 using MovieRental.Infrastructure.Settings;
 using System.IdentityModel.Tokens.Jwt;
@@ -24,6 +25,11 @@ internal class JwtProvider : IJwtProvider
             new Claim(ClaimTypes.Role, $"{user.Role}"),
             new Claim("DateOfBirth", user.DateOfBirth.ToString())
         };
+
+        if(_authenticationSettings.JwtKey is null)
+        {
+            throw new JwtKeyNullException("JwtKey cannot be null");
+        }
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));
         var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

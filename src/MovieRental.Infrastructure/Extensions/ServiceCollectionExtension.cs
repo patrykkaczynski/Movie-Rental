@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using MovieRental.Domain.Exceptions;
 using MovieRental.Domain.Interfaces;
 using MovieRental.Infrastructure.Authentication;
 using MovieRental.Infrastructure.Persistence;
@@ -22,6 +23,11 @@ public static class ServiceCollectionExtension
         configuration.GetSection("Authentication").Bind(authenticationSettings);
 
         services.AddSingleton(authenticationSettings);
+
+        if (authenticationSettings.JwtKey is null)
+        {
+            throw new JwtKeyNullException("JwtKey cannot be null");
+        }
 
         services.AddAuthentication(option =>
         {
