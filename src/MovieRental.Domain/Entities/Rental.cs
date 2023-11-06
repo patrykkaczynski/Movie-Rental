@@ -3,10 +3,10 @@ namespace MovieRental.Domain.Entities;
 
 public class Rental
 {
-    public Guid Id { get; private set; }
-    public DateTime RentalDate { get; set; }
-    public DateTime? ReturnedDate { get; set; }
-    public DateTime DueDate { get; set; }
+    public int Id { get; private set; }
+    public DateTimeOffset RentalDate { get; set; }
+    public DateTimeOffset? ReturnedDate { get; set; }
+    public DateTimeOffset DueDate { get; set; }
 
     public Guid PhysicalMovieId { get; set; }
     public PhysicalMovie? PhysicalMovie { get; set; }

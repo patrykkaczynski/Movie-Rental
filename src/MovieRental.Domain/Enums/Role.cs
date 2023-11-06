@@ -4,6 +4,6 @@ namespace MovieRental.Domain.Enums;
 public enum Role
 {
     Client = 1,
-    Employee,
-    Manager
+    Employee = 2,
+    Manager = 3
 }
