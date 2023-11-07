@@ -12,7 +12,7 @@ internal class ReviewRepository : IReviewRepository
         _dbContext = dbContext;
     }
 
-    public async Task<Guid> CreateAsync(Review review)
+    public async Task<int> CreateAsync(Review review)
     {
         await _dbContext.Reviews.AddAsync(review);
         await _dbContext.SaveChangesAsync();

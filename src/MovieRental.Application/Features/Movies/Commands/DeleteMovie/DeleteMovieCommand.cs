@@ -4,7 +4,7 @@ using MovieRental.Domain.Interfaces;
 
 namespace MovieRental.Application.Features.Movies.Commands.DeleteMovie;
 
-public record DeleteMovieCommand(Guid Id) : IRequest;
+public record DeleteMovieCommand(int Id) : IRequest;
 
 internal sealed class DeleteMovieCommandHandler : IRequestHandler<DeleteMovieCommand>
 {

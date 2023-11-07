@@ -9,6 +9,6 @@ public class Review
     public required string CreatedBy { get; set; }
     public DateTimeOffset CreationDate { get; set; }
 
-    public Guid MovieId { get; set; }
+    public int MovieId { get; set; }
     public Movie? Movie { get; set; }
 }

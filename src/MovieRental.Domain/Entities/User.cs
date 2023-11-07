@@ -8,7 +8,7 @@ public class User
     public required string Email { get; set; }
     public required string FirstName { get; set; }
     public required string LastName { get; set; }
-    public DateTimeOffset DateOfBirth { get; set; }
+    public DateTime DateOfBirth { get; set; }
     public required string PasswordHash { get; set; }
     public Role Role { get; set; }
 

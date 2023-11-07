@@ -16,16 +16,16 @@ internal sealed class MovieConfiguration : IEntityTypeConfiguration<Movie>
             .HasMaxLength(150)
             .IsRequired();
 
-        builder.Property(m => m.Genre)
-           .HasMaxLength(50)
-           .IsRequired();
+        //builder.Property(m => m.Genre)
+        //   .HasMaxLength(50)
+        //   .IsRequired();
 
-        builder.Property(m => m.RunTimeMin)
-           .IsRequired();
+        //builder.Property(m => m.RunTimeMin)
+        //   .IsRequired();
 
-        builder.Property(m => m.RegionOfOrigin)
-           .HasMaxLength(50)
-           .IsRequired();
+        //builder.Property(m => m.RegionOfOrigin)
+        //   .HasMaxLength(50)
+        //   .IsRequired();
 
         builder.Property(m => m.ReleaseDate)
           .IsRequired();

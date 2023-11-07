@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MovieRental.Api.Controllers.Base;
 using MovieRental.Application.Features.Accounts.Commands.LoginUser;
 using MovieRental.Application.Features.Accounts.Commands.RegisterUser;
+using Nager.Country;
 
 namespace MovieRental.Api.Controllers;
 
@@ -14,6 +15,9 @@ public class AccountController : ApiControllerBase
     [HttpPost("register")]
     public async Task<ActionResult> RegisterUser([FromBody] RegisterUserCommand command)
     {
+        var countries = ISO3166.Country.List;
+        ICountryProvider countryProvider = new CountryProvider();
+
         await _mediator.Send(command);
         return Ok();
     }

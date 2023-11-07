@@ -4,5 +4,5 @@ namespace MovieRental.Domain.Interfaces;
 
 public interface IReviewRepository
 {
-    Task<Guid> CreateAsync(Review review);
+    Task<int> CreateAsync(Review review);
 }

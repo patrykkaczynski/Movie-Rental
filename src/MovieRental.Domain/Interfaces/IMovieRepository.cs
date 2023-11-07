@@ -5,8 +5,8 @@ namespace MovieRental.Domain.Interfaces;
 public interface IMovieRepository
 {
     Task<IEnumerable<Movie>> GetAllAsync();
-    Task<Movie?> GetByIdAsync(Guid id);
-    Task<Guid> CreateAsync(Movie movie);
+    Task<Movie?> GetByIdAsync(int id);
+    Task<int> CreateAsync(Movie movie);
     Task UpdateAsync(Movie existingMovie, Movie newMovie);
     Task DeleteAsync(Movie movie);
 }

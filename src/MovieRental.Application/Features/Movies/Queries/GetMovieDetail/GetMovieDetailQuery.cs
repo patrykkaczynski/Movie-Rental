@@ -5,7 +5,7 @@ using MovieRental.Domain.Interfaces;
 
 namespace MovieRental.Application.Features.Movies.Queries.GetMovieDetail
 {
-    public record class GetMovieDetailQuery(Guid Id) : IRequest<MovieDetailQueryDto>;
+    public record class GetMovieDetailQuery(int Id) : IRequest<MovieDetailQueryDto>;
 
     internal sealed class GetMoveDetailQueryHandler : IRequestHandler<GetMovieDetailQuery, MovieDetailQueryDto>
     {

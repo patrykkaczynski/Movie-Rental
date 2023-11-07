@@ -18,14 +18,14 @@ public class MovieRepository : IMovieRepository
         return await _dbContext.Movies.AsNoTracking().ToListAsync();
     }
 
-    public async Task<Movie?> GetByIdAsync(Guid id)
+    public async Task<Movie?> GetByIdAsync(int id)
     {
         return await _dbContext.Movies
             .Include(m => m.Reviews)
             .FirstOrDefaultAsync(m => m.Id == id);
     }
 
-    public async Task<Guid> CreateAsync(Movie movie)
+    public async Task<int> CreateAsync(Movie movie)
     {
         await _dbContext.Movies.AddAsync(movie);
         await _dbContext.SaveChangesAsync();
@@ -37,9 +37,9 @@ public class MovieRepository : IMovieRepository
     {
         existingMovie.Title = newMovie.Title;
         existingMovie.Description = newMovie.Description;
-        existingMovie.Genre = newMovie.Genre;
-        existingMovie.RunTimeMin = newMovie.RunTimeMin;
-        existingMovie.RegionOfOrigin = newMovie.RegionOfOrigin;
+        //existingMovie.Genre = newMovie.Genre;
+        //existingMovie.RunTimeMin = newMovie.RunTimeMin;
+        //existingMovie.RegionOfOrigin = newMovie.RegionOfOrigin;
         existingMovie.ReleaseDate = newMovie.ReleaseDate;
 
         await _dbContext.SaveChangesAsync();

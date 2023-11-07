@@ -5,7 +5,7 @@ using MovieRental.Domain.Interfaces;
 
 namespace MovieRental.Application.Features.Reviews.Queries;
 
-public record GetReviewsQuery(Guid MovieId) : IRequest<IEnumerable<ReviewListQueryDto>>;
+public record GetReviewsQuery(int MovieId) : IRequest<IEnumerable<ReviewListQueryDto>>;
 
 internal sealed class GetReviewsQueryHandler : IRequestHandler<GetReviewsQuery, IEnumerable<ReviewListQueryDto>>
 {

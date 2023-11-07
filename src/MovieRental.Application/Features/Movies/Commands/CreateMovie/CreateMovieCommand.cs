@@ -12,10 +12,10 @@ public record CreateMovieCommand(
     int RunTimeMin,
     string RegionOfOrigin,
     DateOnly ReleaseDate
-      ) : IRequest<Guid>;
+      ) : IRequest<int>;
 
 
-internal sealed class CreateBookCommandHandler : IRequestHandler<CreateMovieCommand, Guid>
+internal sealed class CreateBookCommandHandler : IRequestHandler<CreateMovieCommand, int>
 {
     private readonly IMapper _mapper;
     private readonly IMovieRepository _movieRepository;
@@ -25,7 +25,7 @@ internal sealed class CreateBookCommandHandler : IRequestHandler<CreateMovieComm
         _mapper = mapper;
         _movieRepository = movieRepository;
     }
-    public async Task<Guid> Handle(CreateMovieCommand request, CancellationToken cancellationToken)
+    public async Task<int> Handle(CreateMovieCommand request, CancellationToken cancellationToken)
     {
         var movie = _mapper.Map<Movie>(request);
 

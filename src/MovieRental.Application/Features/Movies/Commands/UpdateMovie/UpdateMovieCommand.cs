@@ -7,7 +7,7 @@ using MovieRental.Domain.Interfaces;
 namespace MovieRental.Application.Features.Movies.Commands.UpdateMovie;
 
 public record UpdateMovieCommand(
-    Guid Id,
+    int Id,
     string Title,
     string Description,
     string Genre,

@@ -8,11 +8,11 @@ using MovieRental.Domain.Interfaces;
 namespace MovieRental.Application.Features.Reviews.Commands;
 
 public record class CreateReviewCommand(
-    Guid MovieId,
+    int MovieId,
     string Description, 
-    int Rating) : IRequest<Guid>;
+    int Rating) : IRequest<int>;
 
-internal sealed class CreateReviewHandler : IRequestHandler<CreateReviewCommand, Guid>
+internal sealed class CreateReviewHandler : IRequestHandler<CreateReviewCommand, int>
 {
     private readonly IMovieRepository _movieRepository;
     private readonly IMapper _mapper;
@@ -26,7 +26,7 @@ internal sealed class CreateReviewHandler : IRequestHandler<CreateReviewCommand,
         _userContext = userContext;
         _reviewRepository = reviewRepository;
     }
-    public async Task<Guid> Handle(CreateReviewCommand request, CancellationToken cancellationToken)
+    public async Task<int> Handle(CreateReviewCommand request, CancellationToken cancellationToken)
     {
         _ = await _movieRepository.GetByIdAsync(request.MovieId) ?? throw new NotFoundException($"Movie does not exist with {request.MovieId} id");
 

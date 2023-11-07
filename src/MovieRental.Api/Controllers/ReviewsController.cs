@@ -14,7 +14,7 @@ public class ReviewsController : ApiControllerBase
     public ReviewsController(IMediator mediator) : base(mediator) { }
 
     [HttpGet]
-    public async Task<ActionResult> GetReviewsAsync([FromRoute] Guid movieId)
+    public async Task<ActionResult> GetReviewsAsync([FromRoute] int movieId)
     {
         var reviews = await _mediator.Send(new GetReviewsQuery(movieId));
 
@@ -22,7 +22,7 @@ public class ReviewsController : ApiControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> CreateReviewAsync([FromRoute] Guid movieId, [FromBody] CreateReviewDto reviewDto)
+    public async Task<ActionResult> CreateReviewAsync([FromRoute] int movieId, [FromBody] CreateReviewDto reviewDto)
     {
         var id = await _mediator.Send(new CreateReviewCommand(movieId, reviewDto.Description, reviewDto.Rating));
 

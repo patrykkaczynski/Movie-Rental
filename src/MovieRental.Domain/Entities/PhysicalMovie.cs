@@ -8,7 +8,7 @@ public class PhysicalMovie
     public Format Format { get; set; }
     public int Quantity { get; set; }
 
-    public Guid MovieId { get; set; }
+    public int MovieId { get; set; }
     public Movie? Movie { get; set; }
     public ICollection<Rental> Rentals { get; set; } = new List<Rental>();
 }

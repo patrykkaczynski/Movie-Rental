@@ -26,7 +26,7 @@ public class MoviesController : ApiControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<MovieDetailQueryDto>> GetMovieAsync([FromRoute] Guid id)
+    public async Task<ActionResult<MovieDetailQueryDto>> GetMovieAsync([FromRoute] int id)
     {
         var movieDto = await _mediator.Send(new GetMovieDetailQuery(id));
 
@@ -41,14 +41,14 @@ public class MoviesController : ApiControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult> UpdateMovieAsync([FromRoute] Guid id, [FromBody] UpdateMovieDto movieDto)
+    public async Task<ActionResult> UpdateMovieAsync([FromRoute] int id, [FromBody] UpdateMovieDto movieDto)
     {
         await _mediator.Send(new UpdateMovieCommand(id, movieDto.Title, movieDto.Description, movieDto.Genre, movieDto.RunTimeMin, movieDto.RegionOfOrigin, movieDto.ReleaseDate));
         return Ok();
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteMovieAsync([FromRoute] Guid id)
+    public async Task<ActionResult> DeleteMovieAsync([FromRoute] int id)
     {
         await _mediator.Send(new DeleteMovieCommand(id));
         return NoContent();
