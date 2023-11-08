@@ -7,7 +7,7 @@
 namespace MovieRental.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class AddRoles : Migration
+    public partial class RoleConfiguration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

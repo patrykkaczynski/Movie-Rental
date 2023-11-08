@@ -2,7 +2,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using MovieRental.Domain.Entities;
-using MovieRental.Domain.Enums;
 using MovieRental.Domain.Interfaces;
 
 namespace MovieRental.Application.Features.Accounts.Commands.RegisterUser;
@@ -14,7 +13,7 @@ public record RegisterUserCommand(
     string FirstName,
     string LastName,
     DateOnly DateOfBirth,
-    Role Role) : IRequest;
+    int RoleId) : IRequest;
 
 internal sealed class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand>
 {

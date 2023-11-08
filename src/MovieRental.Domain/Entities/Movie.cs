@@ -6,7 +6,7 @@ public class Movie
     public int Id { get; private set; }
     public required string Title { get; set; }
     public required string Description { get; set; }
-    public int Duration { get; set; }
+    public TimeSpan Duration { get; set; }
     public DateOnly ReleaseDate { get; set; }
 
     public ICollection<Genre> Genres { get; set; } = new List<Genre>();

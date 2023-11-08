@@ -37,9 +37,16 @@ internal sealed class RegisterUserCommandValidator : AbstractValidator<RegisterU
             .NotEmpty()
             .ExclusiveBetween(DateOnly.FromDateTime(DateTime.Now).AddYears(-125), DateOnly.FromDateTime(DateTime.Now));
 
-        RuleFor(r => r.Role)
+        RuleFor(r => r.RoleId)
             .NotEmpty()
-            .IsInEnum();
+            .Custom((value, context) =>
+            {
+                var roleInUse = accountRepository.ValidateRoleAsync(value).Result;
+                if(!roleInUse)
+                {
+                    context.AddFailure("RoleId", "The role does not exist with this Id");
+                }
+            });
     }
 }
 

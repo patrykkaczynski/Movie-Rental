@@ -25,6 +25,11 @@ internal class AccountRepository : IAccountRepository
         return await _dbContext.Users.AnyAsync(u => u.Email == email);
     }
 
+    public async Task<bool> ValidateRoleAsync(int roleId)
+    {
+        return await _dbContext.Roles.AnyAsync(r => r.Id == roleId);
+    }
+
     public async Task<User?> GetUserAsync(string email)
     {
 
