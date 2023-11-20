@@ -8,7 +8,8 @@ public class GenreConfiguration : IEntityTypeConfiguration<Genre>
 {
     public void Configure(EntityTypeBuilder<Genre> builder)
     {
-        builder.Property(g => g.Name)
+        builder
+            .Property(g => g.Name)
             .IsRequired();
 
         builder.HasData(

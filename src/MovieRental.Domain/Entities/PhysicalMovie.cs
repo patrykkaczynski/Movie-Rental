@@ -3,7 +3,7 @@ namespace MovieRental.Domain.Entities;
 
 public class PhysicalMovie
 {
-    public int Id { get; private set; }
+    public int Id { get; set; }
     public int Quantity { get; set; }
 
     public int FormatId { get; set; }

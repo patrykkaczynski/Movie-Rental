@@ -3,7 +3,7 @@ namespace MovieRental.Domain.Entities;
 
 public class Rental
 {
-    public int Id { get; private set; }
+    public int Id { get; set; }
     public DateTimeOffset RentalDate { get; set; }
     public DateTimeOffset? ReturnedDate { get; set; }
     public DateTimeOffset DueDate { get; set; }

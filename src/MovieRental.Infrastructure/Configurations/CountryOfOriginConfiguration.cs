@@ -9,10 +9,12 @@ public class CountryOfOriginConfiguration : IEntityTypeConfiguration<CountryOfOr
 {
     public void Configure(EntityTypeBuilder<CountryOfOrigin> builder)
     {
-        builder.Property(c => c.CommonName)
+        builder
+            .Property(c => c.CommonName)
             .IsRequired();
 
-        builder.Property(c => c.NameAlpha3Code)
+        builder
+            .Property(c => c.NameAlpha3Code)
             .IsRequired()
             .HasMaxLength(3);
 
@@ -25,7 +27,7 @@ public class CountryOfOriginConfiguration : IEntityTypeConfiguration<CountryOfOr
             NameAlpha3Code = Enum.GetName(countryInfo.Alpha3Code) ?? string.Empty
         }).ToList();
 
-        builder.HasData(countries);
-
+        builder
+            .HasData(countries);
     }
 }

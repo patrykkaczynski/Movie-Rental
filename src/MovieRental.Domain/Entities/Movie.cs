@@ -3,7 +3,7 @@ namespace MovieRental.Domain.Entities;
 
 public class Movie
 {
-    public int Id { get; private set; }
+    public int Id { get; set; }
     public required string Title { get; set; }
     public required string Description { get; set; }
     public TimeSpan Duration { get; set; }
