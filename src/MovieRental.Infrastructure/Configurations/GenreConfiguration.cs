@@ -4,7 +4,7 @@ using MovieRental.Domain.Entities;
 
 namespace MovieRental.Infrastructure.Configurations;
 
-public class GenreConfiguration : IEntityTypeConfiguration<Genre>
+internal sealed class GenreConfiguration : IEntityTypeConfiguration<Genre>
 {
     public void Configure(EntityTypeBuilder<Genre> builder)
     {

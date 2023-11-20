@@ -5,7 +5,7 @@ using Nager.Country;
 
 namespace MovieRental.Infrastructure.Configurations;
 
-public class CountryOfOriginConfiguration : IEntityTypeConfiguration<CountryOfOrigin>
+internal sealed class CountryOfOriginConfiguration : IEntityTypeConfiguration<CountryOfOrigin>
 {
     public void Configure(EntityTypeBuilder<CountryOfOrigin> builder)
     {

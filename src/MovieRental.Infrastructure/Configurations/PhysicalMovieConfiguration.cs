@@ -9,6 +9,10 @@ internal sealed class PhysicalMovieConfiguration : IEntityTypeConfiguration<Phys
     public void Configure(EntityTypeBuilder<PhysicalMovie> builder)
     {
         builder
+            .Property(p => p.Quantity)
+            .IsRequired();
+
+        builder
             .HasOne(p => p.Format)
             .WithMany(f => f.PhysicalMovies)
             .HasForeignKey(p => p.FormatId);

@@ -1,12 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MovieRental.Domain.Entities;
 
-namespace MovieRental.Infrastructure.Configurations
+namespace MovieRental.Infrastructure.Configurations;
+
+internal sealed class RentalConfiguration : IEntityTypeConfiguration<Rental>
 {
-    internal class RentalConfiguration
+    public void Configure(EntityTypeBuilder<Rental> builder)
     {
+        builder
+            .Property(r => r.RentalDate)
+            .IsRequired();
+
+        builder
+           .Property(r => r.DueDate)
+           .IsRequired();
     }
 }

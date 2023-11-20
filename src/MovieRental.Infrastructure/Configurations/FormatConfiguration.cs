@@ -4,7 +4,7 @@ using MovieRental.Domain.Entities;
 
 namespace MovieRental.Infrastructure.Configurations;
 
-public class FormatConfiguration : IEntityTypeConfiguration<Format>
+internal sealed class FormatConfiguration : IEntityTypeConfiguration<Format>
 {
     public void Configure(EntityTypeBuilder<Format> builder)
     {
