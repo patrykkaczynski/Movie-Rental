@@ -12,9 +12,9 @@ namespace MovieRental.Api.Controllers;
 
 [Authorize]
 [Route("api/movies")]
-public class MoviesController : ApiControllerBase
+public class MovieController : ApiControllerBase
 {
-    public MoviesController(IMediator mediator) : base(mediator) { }
+    public MovieController(IMediator mediator) : base(mediator) { }
 
 
     [HttpGet]

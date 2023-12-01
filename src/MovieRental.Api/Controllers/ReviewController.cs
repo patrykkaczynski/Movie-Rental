@@ -9,9 +9,9 @@ namespace MovieRental.Api.Controllers;
 
 [Route("api/movies/{movieId}/reviews")]
 [Authorize(Roles = "Client")]
-public class ReviewsController : ApiControllerBase
+public class ReviewController : ApiControllerBase
 {
-    public ReviewsController(IMediator mediator) : base(mediator) { }
+    public ReviewController(IMediator mediator) : base(mediator) { }
 
     [HttpGet]
     public async Task<ActionResult> GetReviewsAsync([FromRoute] int movieId)
