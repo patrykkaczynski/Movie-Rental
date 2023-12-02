@@ -10,21 +10,18 @@ internal sealed class CountryOfOriginConfiguration : IEntityTypeConfiguration<Co
     public void Configure(EntityTypeBuilder<CountryOfOrigin> builder)
     {
         builder
+            .HasKey(c => c.NameAlpha3Code);
+
+        builder
             .Property(c => c.CommonName)
             .IsRequired();
 
-        builder
-            .Property(c => c.NameAlpha3Code)
-            .IsRequired()
-            .HasMaxLength(3);
-
         var countryProvider = new CountryProvider();
 
-        var countries = countryProvider.GetCountries().Select((countryInfo, index) => 
-        new CountryOfOrigin { 
-            Id = index + 1, 
-            CommonName = countryInfo.CommonName,
-            NameAlpha3Code = Enum.GetName(countryInfo.Alpha3Code) ?? string.Empty
+        var countries = countryProvider.GetCountries().Select((countryInfo) => 
+        new CountryOfOrigin {
+            NameAlpha3Code = Enum.GetName(countryInfo.Alpha3Code) ?? string.Empty,
+            CommonName = countryInfo.CommonName
         }).ToList();
 
         builder

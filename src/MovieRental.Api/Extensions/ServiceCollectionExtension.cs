@@ -29,6 +29,14 @@ public static class ServiceCollectionExtension
                 Detail = exception.Message
             });
 
+            options.Map<OperationCanceledException>(exception => new ProblemDetails()
+            {
+                Type = StatusCodeProblemDetails.Create(409).Type,
+                Title = StatusCodeProblemDetails.Create(409).Title,
+                Status = StatusCodeProblemDetails.Create(409).Status,
+                Detail = exception.Message
+            });
+
             options.Map<Exception>(exception => new ProblemDetails()
             {
                 Type = StatusCodeProblemDetails.Create(500).Type,

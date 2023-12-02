@@ -6,7 +6,7 @@ namespace MovieRental.Application.Features.CountriesOfOrigin.Queries.GetCountryO
 
 public record GetCountryOfOriginListQuery() : IRequest<IEnumerable<CountryOfOriginListQueryDto>>;
 
-public class GetCountryOfOriginListQueryHandler : IRequestHandler<GetCountryOfOriginListQuery, IEnumerable<CountryOfOriginListQueryDto>>
+internal sealed class GetCountryOfOriginListQueryHandler : IRequestHandler<GetCountryOfOriginListQuery, IEnumerable<CountryOfOriginListQueryDto>>
 {
     private readonly IMapper _mapper;
     private readonly ICountryOfOriginRepository _countryOfOriginRepository;
@@ -19,8 +19,6 @@ public class GetCountryOfOriginListQueryHandler : IRequestHandler<GetCountryOfOr
     public async Task<IEnumerable<CountryOfOriginListQueryDto>> Handle(GetCountryOfOriginListQuery request, CancellationToken cancellationToken)
     {
         var countriesOfOrigin = await _countryOfOriginRepository.GetAllAsync(cancellationToken);
-
-        await Task.Delay(5000, cancellationToken);
 
         return _mapper.Map<IEnumerable<CountryOfOriginListQueryDto>>(countriesOfOrigin);
     }

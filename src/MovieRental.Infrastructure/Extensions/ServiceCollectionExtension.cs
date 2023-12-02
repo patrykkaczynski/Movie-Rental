@@ -55,6 +55,8 @@ public static class ServiceCollectionExtension
         services.AddScoped<IAccountRepository, AccountRepository>();
         services.AddScoped<IReviewRepository, ReviewRepository>();
         services.AddScoped<ICountryOfOriginRepository, CountryOfOriginRepository>();
+        services.AddScoped<IGenreRepository, GenreRepository>();
+        services.AddScoped<IFormatRepository, FormatRepository>();
 
         //JwtProvider
         services.AddScoped<IJwtProvider, JwtProvider>();

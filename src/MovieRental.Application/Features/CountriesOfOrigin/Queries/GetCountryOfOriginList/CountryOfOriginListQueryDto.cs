@@ -3,7 +3,6 @@ namespace MovieRental.Application.Features.CountriesOfOrigin.Queries.GetCountryO
 
 public class CountryOfOriginListQueryDto
 {
-    public int Id { get; set; }
-    public required string CommonName { get; set; }
     public required string NameAlpha3Code { get; set; }
+    public required string CommonName { get; set; }
 }
